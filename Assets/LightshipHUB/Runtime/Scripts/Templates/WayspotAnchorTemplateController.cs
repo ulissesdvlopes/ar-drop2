@@ -36,6 +36,8 @@ namespace Niantic.LightshipHub.Templates
 
     private IWayspotAnchorsConfiguration _config;
 
+    private bool hasPlacedContent = false;
+
     private void Awake()
     {
       StatusLog.text = "Initializing Session.";
@@ -67,13 +69,18 @@ namespace Niantic.LightshipHub.Templates
       {
         return;
       }
-      //Get the pose where you tap on the screen
+            //Get the pose where you tap on the screen
+      if (hasPlacedContent) return;
       var success = TryGetTouchInput(out Matrix4x4 localPose);
       
       if (success)
       {
         if (_wayspotAnchorService.LocalizationState == LocalizationState.Localized)
-          PlaceAnchor(localPose); //Create the Wayspot Anchor and place the GameObject
+        {
+            PlaceAnchor(localPose); //Create the Wayspot Anchor and place the GameObject
+            hasPlacedContent = true;
+        }
+          
         else
           StatusLog.text = "Must localize before placing anchor.";
       }
