@@ -7,12 +7,15 @@ using Niantic.ARDK.Utilities.Editor;
 
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Niantic.ARDK.Extensions
 {
-  /// A helper component to automatically position the scene rendering AR content and transform its output
-  public class ARCameraPositionHelper: MonoBehaviour
+    /// A helper component to automatically position the scene rendering AR content and transform its output
+    public class ARCameraPositionHelper: MonoBehaviour
   {
+    public Text text;
+
     [FormerlySerializedAs("Camera")]
     [SerializeField]
     [_Autofill]
@@ -65,6 +68,7 @@ namespace Niantic.ARDK.Extensions
 
       // Set the camera's position.
       var worldTransform = args.Frame.Camera.GetViewMatrix(Screen.orientation).inverse;
+      //text.text = worldTransform.ToPosition().ToString();
       localCamera.transform.position = worldTransform.ToPosition();
       localCamera.transform.rotation = worldTransform.ToRotation();
     }
