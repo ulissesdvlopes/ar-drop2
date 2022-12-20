@@ -14,6 +14,7 @@ public class CameraTracking : MonoBehaviour
 {
     public Text text;
     public Camera camera;
+    public Material material;
     private bool visible = true;
 
     // Start is called before the first frame update
