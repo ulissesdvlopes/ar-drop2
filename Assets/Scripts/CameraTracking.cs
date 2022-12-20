@@ -14,8 +14,7 @@ public class CameraTracking : MonoBehaviour
 {
     public Text text;
     public Camera camera;
-    public Material material;
-    private bool visible = true;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +26,13 @@ public class CameraTracking : MonoBehaviour
     void Update()
     {
         float distanceToCamera = Vector3.Distance(transform.position, camera.transform.position);
-        text.text = distanceToCamera.ToString();
-        if(distanceToCamera < 1.0 && visible)
+        text.text = distanceToCamera.ToString() + " " + animator.GetBool("isClose");
+        if (distanceToCamera < 1.2 && !animator.GetBool("isClose"))
         {
-            //Destroy(gameObject);
+            animator.SetBool("isClose", true);
+        } else if(distanceToCamera > 1.5 && animator.GetBool("isClose"))
+        {
+            animator.SetBool("isClose", false);
         }
     }
 }
