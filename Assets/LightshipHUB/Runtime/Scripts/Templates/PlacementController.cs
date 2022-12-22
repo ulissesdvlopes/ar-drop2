@@ -1,7 +1,7 @@
 ﻿// Copyright 2022 Niantic, Inc. All Rights Reserved.
 
 using UnityEngine;
-
+using UnityEngine.UI;
 using Niantic.ARDK.Utilities;
 using Niantic.ARDK.AR.HitTest;
 using Niantic.ARDK.Utilities.Input.Legacy;
@@ -10,6 +10,7 @@ namespace Niantic.LightshipHub.Templates
 {
   public class PlacementController : MonoBehaviour
   {
+    public Text text;
     [HideInInspector]
     public ObjectHolderController OHcontroller;
     public bool MultipleInstances;
@@ -27,9 +28,12 @@ namespace Niantic.LightshipHub.Templates
 
     private void TouchBegan(Touch touch)
     {
+      text.text = "Touch";
       var currentFrame = OHcontroller.Session.CurrentFrame;
+      text.text = "FRAME";
       if (currentFrame == null) return;
 
+      text.text = "CAMERA";
       if (OHcontroller.Camera == null) return;
 
       var hitTestResults = currentFrame.HitTest(
@@ -39,9 +43,12 @@ namespace Niantic.LightshipHub.Templates
           ARHitTestResultType.EstimatedHorizontalPlane
       );
 
+      text.text = "HIT";
       if (hitTestResults.Count <= 0) return;
 
       var position = hitTestResults[0].WorldTransform.ToPosition();
+
+      text.text = "Adding objects";
 
       GameObject obj;
       if (MultipleInstances)
