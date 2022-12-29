@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/LightshipHUB/Templates/VPS/WayspotAnchors.unity
     guid: a723aa19f9b854433acebc61902445d4
-  - enabled: 0
+  - enabled: 1
     path: Assets/LightshipHUB/Templates/AR Fundamentals/ImageDetection.unity
     guid: bed9000ced5174bfbaa5e9f0feede7e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/LightshipHUB/Templates/AR Fundamentals/ObjectPlacementWithoutPlanes.unity
     guid: 61a26549aed2f4b45a16bc5a85304c93
   m_configObjects: {}
