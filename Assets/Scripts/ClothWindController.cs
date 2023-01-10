@@ -8,12 +8,21 @@ public class ClothWindController : MonoBehaviour
     private const float MIN_ACCEL = 0.1f;
     private const float MAX_ACCEL = 7.0f;
     private float accel = MIN_ACCEL;
+    private Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
     {
         cloth = GetComponent<Cloth>();
         accel = cloth.externalAcceleration.z;
+        //Debug.Log(transform.eulerAngles);
+        //Debug.Log(transform.rotation);
+        Vector3 vec = transform.up;
+        Debug.Log(vec);
+        vec =  vec * -7;
+        Debug.Log(vec);
+        direction = vec;
+        //cloth.externalAcceleration = vec;
     }
 
     // Update is called once per frame
@@ -33,7 +42,7 @@ public class ClothWindController : MonoBehaviour
             return;
         }
         accel += amount;
-        cloth.externalAcceleration = new Vector3(MIN_ACCEL,MIN_ACCEL,accel);
-        Debug.Log(cloth.externalAcceleration);
+        cloth.externalAcceleration = Vector3.ClampMagnitude(direction,accel);
+        //Debug.Log(cloth.externalAcceleration);
     }
 }
