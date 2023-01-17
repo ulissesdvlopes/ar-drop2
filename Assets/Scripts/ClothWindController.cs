@@ -29,11 +29,34 @@ public class ClothWindController : MonoBehaviour
     void Update()
     {
         SetAccel(-0.004f);
+        CheckInput();
     }
 
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //SetAccel(0.5f);
+    //}
+
+    private void CheckInput()
     {
-        SetAccel(0.5f);
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            CheckHit();
+        }
+    }
+
+    private void CheckHit()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.CompareTag("Cloth"))
+            {
+                SetAccel(0.5f);
+            }
+        }
     }
 
     private void SetAccel(float amount) 
