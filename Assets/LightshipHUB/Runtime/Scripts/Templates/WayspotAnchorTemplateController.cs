@@ -22,9 +22,9 @@ namespace Niantic.LightshipHub.Templates
   {
     [HideInInspector]
     public ObjectHolderController OHcontroller;
-    [HideInInspector]
+    //[HideInInspector]
     public Text StatusLog;
-    [HideInInspector]
+    //[HideInInspector]
     public Text LocalizationStatus;
 
     private WayspotAnchorService _wayspotAnchorService;
@@ -40,7 +40,7 @@ namespace Niantic.LightshipHub.Templates
 
     private void Awake()
     {
-      StatusLog.text = "Initializing Session.";
+      StatusLog.text = "Iniciando...";
       OHcontroller.ObjectHolder.AddComponent<ShowTracker>();
     }
 
@@ -82,7 +82,7 @@ namespace Niantic.LightshipHub.Templates
         }
           
         else
-          StatusLog.text = "Must localize before placing anchor.";
+          StatusLog.text = "Aguardando localização...";
       }
     }
 
@@ -192,11 +192,12 @@ namespace Niantic.LightshipHub.Templates
       _arSession.Ran -= HandleSessionRan;
       _wayspotAnchorService = CreateWayspotAnchorService();
       _wayspotAnchorService.LocalizationStateUpdated += OnLocalizationStateUpdated;
-      StatusLog.text = "Session Initialized.";
+      StatusLog.text = "Inicialização completa.";
     }
 
     private void OnLocalizationStateUpdated(LocalizationStateUpdatedArgs args)
     {
+      // mudar estado de UICanvas
       LocalizationStatus.text = "Localization status: " + args.State;
     }
 
@@ -223,7 +224,8 @@ namespace Niantic.LightshipHub.Templates
 
     private void LocalizationStateUpdated(LocalizationStateUpdatedArgs args)
     {
-      LocalizationStatus.text = args.State.ToString();
+        //mudar estado de UICanvas
+        LocalizationStatus.text = args.State.ToString();
     }
 
     private void PlaceAnchor(Matrix4x4 localPose)
