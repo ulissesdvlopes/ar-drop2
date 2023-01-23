@@ -38,6 +38,23 @@ namespace Niantic.LightshipHub.Templates
 
     private bool hasPlacedContent = false;
 
+    enum UIStates
+    {
+        NotReady,
+        Localizing,
+        LocalizationFailed,
+        Alignment,
+        Confirmation,
+        InGame,
+    };
+
+    UIStates uiState = UIStates.NotReady;
+
+    public GameObject localizing;
+    public GameObject localizationFailed;
+    public GameObject alignment;
+    public GameObject confirmation;
+
     private void Awake()
     {
       StatusLog.text = "Iniciando...";
@@ -84,6 +101,45 @@ namespace Niantic.LightshipHub.Templates
         else
           StatusLog.text = "Aguardando localização...";
       }
+    }
+
+    private void SetUIState(UIStates state)
+    {
+      // switch p desativar estado atual
+      switch (uiState)
+      {
+        case UIStates.Localizing:
+          localizing.SetActive(false);
+        break;
+        case UIStates.LocalizationFailed:
+          localizationFailed.SetActive(false);
+        break;
+        case UIStates.Alignment:
+          alignment.SetActive(false);
+        break;
+        case UIStates.Confirmation:
+          confirmation.SetActive(false);
+        break;
+      }
+
+      // switch para ativar novo estado
+      switch (state)
+      {
+        case UIStates.Localizing:
+          localizing.SetActive(true);
+        break;
+        case UIStates.LocalizationFailed:
+          localizationFailed.SetActive(true);
+        break;
+        case UIStates.Alignment:
+          alignment.SetActive(true);
+        break;
+        case UIStates.Confirmation:
+          confirmation.SetActive(true);
+        break;
+      }
+
+      uiState = state;
     }
 
     /// Saves all of the existing wayspot anchors
@@ -144,6 +200,7 @@ namespace Niantic.LightshipHub.Templates
       _wayspotAnchorService.DestroyWayspotAnchors(wayspotAnchors);
 
       _wayspotAnchorTrackers.Clear();
+      hasPlacedContent = false;
       StatusLog.text = "Cleared Wayspot Anchors.";
     }
 
@@ -195,10 +252,24 @@ namespace Niantic.LightshipHub.Templates
       StatusLog.text = "Inicialização completa.";
     }
 
+    public void ConfirmAlignment() {
+      SetUIState(UIStates.InGame);
+    }
+
     private void OnLocalizationStateUpdated(LocalizationStateUpdatedArgs args)
     {
       // mudar estado de UICanvas
       LocalizationStatus.text = "Localization status: " + args.State;
+
+      if (args.State == LocalizationState.Localizing) {
+          SetUIState(UIStates.Localizing);
+      }
+      if (args.State == LocalizationState.Localized) {
+          SetUIState(UIStates.Alignment);
+      }
+      if (args.State == LocalizationState.Failed) {
+          SetUIState(UIStates.LocalizationFailed);
+      }
     }
 
     private WayspotAnchorService CreateWayspotAnchorService()
@@ -226,6 +297,16 @@ namespace Niantic.LightshipHub.Templates
     {
         //mudar estado de UICanvas
         LocalizationStatus.text = args.State.ToString();
+
+        if (args.State == LocalizationState.Localizing) {
+          SetUIState(UIStates.Localizing);
+        }
+        if (args.State == LocalizationState.Localized) {
+            SetUIState(UIStates.Alignment);
+        }
+        if (args.State == LocalizationState.Failed) {
+            SetUIState(UIStates.LocalizationFailed);
+        }
     }
 
     private void PlaceAnchor(Matrix4x4 localPose)
