@@ -96,6 +96,7 @@ namespace Niantic.LightshipHub.Templates
         {
             PlaceAnchor(localPose); //Create the Wayspot Anchor and place the GameObject
             hasPlacedContent = true;
+            SetUIState(UIStates.Confirmation);
         }
           
         else
