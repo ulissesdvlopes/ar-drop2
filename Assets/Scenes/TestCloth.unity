@@ -217,7 +217,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1631945955
 GameObject:
@@ -395,6 +395,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2082686509
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 270460015, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 521805448, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 683354870, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899080, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810636899081, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_Name
+      value: ClothContainer Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794075810648665089, guid: c63481181399421439fab64a2e0ba551, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c63481181399421439fab64a2e0ba551, type: 3}
 --- !u!1001 &1610749388885730207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -404,7 +477,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1610749387436718904, guid: b36cbc50133712b4b93621b4521f60b4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1610749387436718904, guid: b36cbc50133712b4b93621b4521f60b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -449,6 +522,10 @@ PrefabInstance:
     - target: {fileID: 1610749387436718905, guid: b36cbc50133712b4b93621b4521f60b4, type: 3}
       propertyPath: m_Name
       value: ClothContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610749387436718905, guid: b36cbc50133712b4b93621b4521f60b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b36cbc50133712b4b93621b4521f60b4, type: 3}

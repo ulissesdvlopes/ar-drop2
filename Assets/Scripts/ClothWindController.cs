@@ -9,10 +9,13 @@ public class ClothWindController : MonoBehaviour
     private const float MAX_ACCEL = 7.0f;
     private float accel = MIN_ACCEL;
     private Vector3 direction;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
+        Debug.Log(animator);
         cloth = GetComponent<Cloth>();
         accel = cloth.externalAcceleration.z;
         //Debug.Log(transform.eulerAngles);
@@ -32,10 +35,11 @@ public class ClothWindController : MonoBehaviour
         CheckInput();
     }
 
-    //private void OnMouseDown()
-    //{
-    //SetAccel(0.5f);
-    //}
+    private void OnMouseDown()
+    {
+        SetAccel(0.5f);
+        animator.SetBool("hasClicked", true);
+    }
 
     private void CheckInput()
     {
@@ -55,6 +59,7 @@ public class ClothWindController : MonoBehaviour
             if (hit.transform.CompareTag("Cloth"))
             {
                 SetAccel(0.5f);
+                animator.SetBool("hasClicked", true);
             }
         }
     }

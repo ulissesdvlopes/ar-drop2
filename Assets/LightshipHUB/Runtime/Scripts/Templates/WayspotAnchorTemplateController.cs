@@ -266,6 +266,11 @@ namespace Niantic.LightshipHub.Templates
           SetUIState(UIStates.Localizing);
       }
       if (args.State == LocalizationState.Localized) {
+          if(hasPlacedContent) 
+          {
+            SetUIState(UIStates.InGame);
+            return;
+          }
           SetUIState(UIStates.Alignment);
       }
       if (args.State == LocalizationState.Failed) {
